@@ -17,7 +17,7 @@ client = TelegramClient('bot_session', api_id, api_hash).start(bot_token=bot_tok
 async def start(event):
     await event.respond("Hello! Send me boot file to be patched with magisk")
 
-    user_directory = "/home/u201900/Magisk-flasher"
+    user_directory = "/home/u201900/MAGISK-FLASHER-V2"
     user_id = str(event.sender_id)
     user_path = os.path.join(user_directory, user_id)
 
@@ -41,13 +41,13 @@ async def clear(event):
             if os.path.isdir(item):
         # Delete the directory and its contents
                 os.system(f'rm -rf {item}')
-        await event.respond(f"all directories deleted inside /home/u201900/Magisk-flasher")
+        await event.respond(f"all directories deleted inside /home/u201900/MAGISK-FLASHER-V2")
 
 @client.on(events.NewMessage(func=lambda e: e.document))
 #await event.reply("dowmloading file please wait for some  seconds")
 async def download_and_rename_file(event):
     user_id = event.sender_id
-    user_directory = os.path.join("/home/u201900/Magisk-flasher", str(user_id))
+    user_directory = os.path.join("/home/u201900/MAGISK-FLASHER-V2", str(user_id))
     try:
         shutil.rmtree(user_directory)
         print("Directory and all its contents deleted successfully in directory: {user_directory}")
@@ -82,7 +82,7 @@ async def handle_magisk_version(event):
 
     # Create a directory named after the user's user ID
     user_id = event.sender_id
-    user_directory = os.path.join("/home/u201900/Magisk-flasher", str(user_id))
+    user_directory = os.path.join("/home/u201900/MAGISK-FLASHER-V2", str(user_id))
 
     if not os.path.exists(user_directory):
         os.mkdir(user_directory)
@@ -101,8 +101,8 @@ async def handle_magisk_version(event):
     version_text = versions[selected_version]
     await event.respond(f"You selected: {version_text}. Running commands to patch boot.img")
 
-    # Unzip the APK file from /home/u201900/Magisk-flasher
-    apk_file_path = os.path.join("/home/u201900/Magisk-flasher", f"{version_text}.apk")
+    # Unzip the APK file from /home/u201900/MAGISK-FLASHER-V2
+    apk_file_path = os.path.join("/home/u201900/MAGISK-FLASHER-V2", f"{version_text}.apk")
     subprocess.run(["unzip", apk_file_path, "-d", user_directory])
 
     #await event.respond("APK file unzipped successfully!")
