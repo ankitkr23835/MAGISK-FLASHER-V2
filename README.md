@@ -17,7 +17,14 @@ sed -i "s/\/home\/u201900\/Magisk-flasher/$(pwd | sed 's/\//\\\//g')/g" main.py
 pip install -r requirements.txt
 ```
 
-## Run the bot locally
+##                  Run the bot locally
+
+
+#start the bot to generate session file
+```bash
+python3 main.py 
+```
+#Now u can run the bot in background for 24x7
 
 ```bash
 nohup python3 main.py &
