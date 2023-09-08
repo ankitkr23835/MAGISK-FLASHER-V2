@@ -4,7 +4,12 @@ import shutil
 import subprocess
 from telethon.sync import TelegramClient, events
 
-admin=input('admin:')
+
+# Replace these with your actual credentials
+'''api_id = 21856699
+api_hash = '73f10cf0979637857170f03d4c86f251'
+bot_token = '6596357904:AAFkK8sKg2wiy7qfFWn-2DStVYINjH6V1po''''
+admin=input('admin_userid:')
 # Replace these with your actual credentials
 api_id = input('api_id:')
 api_hash = input('api_hash:')
@@ -17,7 +22,7 @@ client = TelegramClient('bot_session', api_id, api_hash).start(bot_token=bot_tok
 async def start(event):
     await event.respond("Hello! Send me boot file to be patched with magisk")
 
-    user_directory = "/home/u201900/MAGISK-FLASHER-V2"
+    user_directory = "/home/u201900/Magisk-flasher"
     user_id = str(event.sender_id)
     user_path = os.path.join(user_directory, user_id)
 
@@ -41,13 +46,13 @@ async def clear(event):
             if os.path.isdir(item):
         # Delete the directory and its contents
                 os.system(f'rm -rf {item}')
-        await event.respond(f"all directories deleted inside /home/u201900/MAGISK-FLASHER-V2")
+        await event.respond(f"all directories deleted inside /home/u201900/Magisk-flasher")
 
-@client.on(events.NewMessage(func=lambda e: e.document))
+'''@client.on(events.NewMessage(func=lambda e: e.document))
 #await event.reply("dowmloading file please wait for some  seconds")
 async def download_and_rename_file(event):
     user_id = event.sender_id
-    user_directory = os.path.join("/home/u201900/MAGISK-FLASHER-V2", str(user_id))
+    user_directory = os.path.join("/home/u201900/Magisk-flasher", str(user_id))
     try:
         shutil.rmtree(user_directory)
         print("Directory and all its contents deleted successfully in directory: {user_directory}")
@@ -74,7 +79,46 @@ async def download_and_rename_file(event):
                         "7. alpha-26105\n"
                         "8. d2a66567-delta\n"
                         "9. 1ce0c9ec-delta\n\n"
-                        "eg:For Magisk-v25.2 send 3 ")
+                        "eg:For Magisk-v25.2 send 3 ")'''
+from FastTelethonhelper import fast_download
+
+@client.on(events.NewMessage(func=lambda e: e.document))
+async def download_and_rename_file(event):
+    user_id = event.sender_id
+    user_directory = os.path.join("/home/u201900/Magisk-flasher", str(user_id))
+    try:
+        shutil.rmtree(user_directory)
+        print(f"Directory and all its contents deleted successfully in directory: {user_directory}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+    # Create a directory named after the user's user ID
+    if not os.path.exists(user_directory):
+        os.mkdir(user_directory)
+
+    await event.reply("Downloading file, please wait for some time")
+
+    download_folder = os.path.join(user_directory, 'downloads')  # Specify the download folder
+    os.makedirs(download_folder, exist_ok=True)
+
+    downloaded_location = await fast_download(client, event, event, download_folder)
+    
+    new_file_path = os.path.join(user_directory, 'boot.img')
+    os.rename(downloaded_location, new_file_path)
+    
+    await event.respond("File downloaded and renamed to 'boot.img' successfully.")
+    await event.respond("Thank you for the file! Please select a Magisk version:\n"
+                        "1. Magisk-v25.0\n"
+                        "2. Magisk-v25.1\n"
+                        "3. Magisk-v25.2\n"
+                        "4. Magisk-v26.0\n"
+                        "5. Magisk-v26.1\n"
+                        "6. alpha-26104\n"
+                        "7. alpha-26105\n"
+                        "8. d2a66567-delta\n"
+                        "9. 1ce0c9ec-delta\n\n"
+                        "e.g., For Magisk-v25.2, send 3 ")
+
 @client.on(events.NewMessage(func=lambda e: e.text and e.text.isdigit() and 1 <= int(e.text) <= 9))
 async def handle_magisk_version(event):
     user_id = event.sender_id
@@ -82,7 +126,7 @@ async def handle_magisk_version(event):
 
     # Create a directory named after the user's user ID
     user_id = event.sender_id
-    user_directory = os.path.join("/home/u201900/MAGISK-FLASHER-V2", str(user_id))
+    user_directory = os.path.join("/home/u201900/Magisk-flasher", str(user_id))
 
     if not os.path.exists(user_directory):
         os.mkdir(user_directory)
@@ -101,8 +145,8 @@ async def handle_magisk_version(event):
     version_text = versions[selected_version]
     await event.respond(f"You selected: {version_text}. Running commands to patch boot.img")
 
-    # Unzip the APK file from /home/u201900/MAGISK-FLASHER-V2
-    apk_file_path = os.path.join("/home/u201900/MAGISK-FLASHER-V2", f"{version_text}.apk")
+    # Unzip the APK file from /home/u201900/Magisk-flasher
+    apk_file_path = os.path.join("/home/u201900/Magisk-flasher", f"{version_text}.apk")
     subprocess.run(["unzip", apk_file_path, "-d", user_directory])
 
     #await event.respond("APK file unzipped successfully!")
