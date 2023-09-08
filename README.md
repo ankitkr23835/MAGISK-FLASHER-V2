@@ -4,6 +4,14 @@ This tool allows you to patch your stock boot.img with the desired Magisk versio
 
 ## Installation
 
-1. Clone the repository:
-   ```bash
+```bash
    git clone https://github.com/ankitkr23835/MAGISK-FLASHER-V2.git
+cd MAGISK-FLASHER-V2
+sed -i "s/\/home\/u201900\/Magisk-flasher/$(pwd | sed 's/\//\\\//g')/g" main.py
+pip install -r requirements.txt
+```
+
+## Run the bot locally
+```bash
+nohup python3 main.py &
+```
