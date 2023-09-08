@@ -4,11 +4,11 @@ import shutil
 import subprocess
 from telethon.sync import TelegramClient, events
 
-
+admin=input('admin:')
 # Replace these with your actual credentials
-api_id = 21856699
-api_hash = '73f10cf0979637857170f03d4c86f251'
-bot_token = '6596357904:AAGEvcxQCH9Qf_lHhayB-L-4Lb7JaWdHPHc'
+api_id = input('api_id:')
+api_hash = input('api_hash:')
+bot_token = input('bot_token:')
 
 # Initialize the Telethon client
 client = TelegramClient('bot_session', api_id, api_hash).start(bot_token=bot_token)
@@ -31,7 +31,7 @@ async def start(event):
 
 @client.on(events.NewMessage(pattern='/clear'))
 async def clear(event):
-    if event.sender_id==6553601715:
+    if event.sender_id==admin:
 # Get the list of items in the current directory
         items = os.listdir()
 
