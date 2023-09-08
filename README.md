@@ -18,7 +18,7 @@ git clone https://github.com/ankitkr23835/MAGISK-FLASHER-V2.git
 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
 ```
 
-# now installation process
+### now installation process
 
 ```bash
 cd MAGISK-FLASHER-V2
@@ -29,11 +29,11 @@ pip install -r requirements.txt
 ##              RUN  THE  BOT  LOCALLY
 
 
-# start the bot to generate session file
+### start the bot to generate session file
 ```bash
 python3 main.py 
 ```
-# Now u can run the bot in background for 24x7
+### Now u can run the bot in background for 24x7
 
 ```bash
 nohup python3 main.py &
