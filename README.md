@@ -13,6 +13,13 @@ This tool allows you to patch your stock boot.img with the desired Magisk versio
 ```bash
 git clone https://github.com/ankitkr23835/MAGISK-FLASHER-V2.git
 ```
+
+```bash
+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
+```
+
+##now installation process
+
 ```bash
 cd MAGISK-FLASHER-V2
 sed -i "s/\/home\/u201900\/Magisk-flasher/$(pwd | sed 's/\//\\\//g')/g" main.py
