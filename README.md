@@ -1,40 +1,26 @@
-# MAGISK-FLASHER-V2
+# Magisk boot patcher bot
+telegram bot to patch stock boot.img with your desired magisk apk
 
 
-This tool allows you to patch your stock boot.img with the desired Magisk version using a Telegram bot interface. With this tool, you can easily root your Android device.
+# deploy to local system
 
+1. clone this repository   
 
-
-
-
-
-## INSTALLATION
-
-```bash
-git clone https://github.com/ankitkr23835/MAGISK-FLASHER-V2.git
+```
+git clone https://github.com/ankitkr88588/Magisk-bot/
+```
+2. Navigate to the Magisk-bot directory and edit the main.py with your credentials. api_id,api_hash,bot_token and devuploads api id:
+```
+cd Magisk-bot && nano main.py
 ```
 
-```bash
-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
+3. Run the main.sh script to install the requirements and start the bot
+```
+chmod +x main.sh
+```
+```
+./main.sh
 ```
 
-### now installation process
+you can use the tmux package to run the bot in background 
 
-```bash
-cd MAGISK-FLASHER-V2
-sed -i "s/\/home\/u201900\/Magisk-flasher/$(pwd | sed 's/\//\\\//g')/g" main.py
-pip install -r requirements.txt
-```
-
-##              RUN  THE  BOT  LOCALLY
-
-
-### start the bot to generate session file
-```bash
-python3 main.py 
-```
-### Now u can run the bot in background for 24x7
-
-```bash
-nohup python3 main.py &
-```
