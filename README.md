@@ -7,7 +7,7 @@ telegram bot to patch stock boot.img with your desired magisk apk
 1. clone this repository   
 
 ```
-git clone https://github.com/ankitkr88588/Magisk-bot/
+git clone https://github.com/ankitkr88588/MAGISK-FLASHER-V2
 ```
 2. Navigate to the Magisk-bot directory and edit the config.py with your credentials. api_id,api_hash,bot_token and devuploads api id:
 ```
