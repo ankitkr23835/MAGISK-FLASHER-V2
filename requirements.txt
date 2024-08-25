@@ -1,0 +1,5 @@
+telethon
+FastTelethonhelper
+tgcrypto
+cryptg
+requests
